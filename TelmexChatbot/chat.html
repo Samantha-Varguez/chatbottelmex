@@ -1,0 +1,79 @@
+<div class="container d-flex justify-content-center">
+  <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="chat.css">
+  </head>
+  
+  <div class="card mt-5" style="width: 400px; height: 500px;">
+    <!-- Chat Header -->
+    <div class="d-flex flex-row justify-content-between p-3 adiv text-white">
+      <i class="fas fa-chevron-left"></i>
+      <span class="pb-3">Live chat</span>
+      <i class="fas fa-times"></i>
+    </div>
+
+    <!-- Chat messages container -->
+    <div id="chat-area" class="overflow-auto" style="flex-grow: 1; max-height: 350px; padding-bottom: 10px;">
+      <!-- Existing messages -->
+      <div class="d-flex flex-row p-3">
+        <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-7.png" width="30" height="30">
+        <div class="chat ml-2 p-3">Prueba Chat Telmex ¿Cuál es su duda?</div>
+      </div>
+
+      <div class="d-flex flex-row p-3">
+        <div class="bg-white mr-2 p-3">
+          <span class="text-muted">Quisiera saber más sobre los planes de suscripción.</span>
+        </div>
+        <img src="https://img.icons8.com/color/48/000000/circled-user-male-skin-type-7.png" width="30" height="30">
+      </div>
+    </div>
+
+    <!-- Send Message Area -->
+    <div class="form-group d-flex px-3">
+      <textarea class="form-control" id="messageInput" rows="2" placeholder="Type your message"></textarea>
+      <button id="send-btn" class="btn btn-primary ml-2">Enviar</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</div>
+
+    
+    <script>
+
+document.getElementById('send-btn').addEventListener('click', function() {
+  var message = document.getElementById('messageInput').value;
+
+  if (message.trim() !== "") {
+
+    var chatArea = document.getElementById('chat-area');
+    var newMessageDiv = document.createElement('div');
+    newMessageDiv.classList.add('d-flex', 'flex-row', 'p-3');
+
+    newMessageDiv.innerHTML = `
+      <div class="bg-white mr-2 p-3">
+        <span class="text-muted">${message}</span>
+      </div>
+      <img src="https://img.icons8.com/color/48/000000/circled-user-male-skin-type-7.png" width="30" height="30">
+    `;
+    
+    chatArea.appendChild(newMessageDiv);
+
+    document.getElementById('messageInput').value = '';
+
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+});
+
+
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+
+  </div>
