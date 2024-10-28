@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TelmexChatbot")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87b27fd85549d43a3d38dd86d62beaa93a47d612")]
 [assembly: System.Reflection.AssemblyProductAttribute("TelmexChatbot")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TelmexChatbot")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

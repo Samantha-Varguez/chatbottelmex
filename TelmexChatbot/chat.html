@@ -1,10 +1,11 @@
 <div class="container d-flex justify-content-center">
+
   <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="chat.css">
   </head>
-  
+
   <div class="card mt-5" style="width: 400px; height: 500px;">
     <!-- Chat Header -->
     <div class="d-flex flex-row justify-content-between p-3 adiv text-white">
@@ -40,40 +41,66 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </div>
 
-    
-    <script>
-
+<script>
 document.getElementById('send-btn').addEventListener('click', function() {
+  // Get the message from the textarea
   var message = document.getElementById('messageInput').value;
 
+  // Make sure the message is not empty
   if (message.trim() !== "") {
+      // Prepare the data to be sent to the API
+      var data = {
+          userMessage: message
+      };
 
-    var chatArea = document.getElementById('chat-area');
-    var newMessageDiv = document.createElement('div');
-    newMessageDiv.classList.add('d-flex', 'flex-row', 'p-3');
+      // Send the message to the API using fetch
+      fetch('https://your-api-endpoint.com/api/messages', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+      })
+      .then(response => {
+          if (response.ok) {
+              return response.json();  // If the API returns a response
+          } else {
+              throw new Error('Error in API request');
+          }
+      })
+      .then(data => {
+          // Handle the API response (for example, show the bot's reply)
+          console.log("Message sent successfully:", data);
 
-    newMessageDiv.innerHTML = `
-      <div class="bg-white mr-2 p-3">
-        <span class="text-muted">${message}</span>
-      </div>
-      <img src="https://img.icons8.com/color/48/000000/circled-user-male-skin-type-7.png" width="30" height="30">
-    `;
-    
-    chatArea.appendChild(newMessageDiv);
+          // Append the sent message to the chat area
+          var chatArea = document.getElementById('chat-area');
+          var newMessageDiv = document.createElement('div');
+          newMessageDiv.classList.add('d-flex', 'flex-row', 'p-3');
 
-    document.getElementById('messageInput').value = '';
+          // Add the sent message to the chat
+          newMessageDiv.innerHTML = `
+            <div class="bg-white mr-2 p-3">
+              <span class="text-muted">${message}</span>
+            </div>
+            <img src="https://img.icons8.com/color/48/000000/circled-user-male-skin-type-7.png" width="30" height="30">
+          `;
+          
+          chatArea.appendChild(newMessageDiv);
 
-    chatArea.scrollTop = chatArea.scrollHeight;
+          // Clear the input field after sending the message
+          document.getElementById('messageInput').value = '';
+
+          // Optionally scroll the chat area to the bottom to show the latest message
+          chatArea.scrollTop = chatArea.scrollHeight;
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
   }
 });
 
-
-    </script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 </body>
-
-
-  </div>
+</div>
